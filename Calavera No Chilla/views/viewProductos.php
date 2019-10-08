@@ -20,5 +20,15 @@
             $this->smarty->assign('productos', $productos);
             $this->smarty->display('templates/viewTodosLosProd.tpl');
         }
+
+        public function mostrarOfertas($productos){
+            $this->smarty->assign('productos',$productos);
+            $this->smarty->display('templates/viewOfertas.tpl');
+        }
         
+        public function error($msgError){
+            $this->smarty->assign('msgError', $msgError);
+            $this->smarty->display('templates/viewError.tpl');
+
+        }
     }
