@@ -33,4 +33,51 @@ class model{
 
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
+    public function eliminarCat($id){
+        $query=$this->db->prepare('DELETE FROM categoria WHERE id_categoria = ?');
+        $query->execute([$id]);
+
+    }
+    public function eliminarProd($id){
+        $query=$this->db->prepare('DELETE FROM producto WHERE id_producto = ?');
+        $query->execute([$id]);
+    }
+
+    public function guardarProd($producto, $graduacion, $precio, $categoria){
+       $query=$this->db->prepare('INSERT INTO producto(id_producto, producto, graduacion, precio, id_categoria_fk) VALUES (null,?,?,?,?)');
+       $query->execute([$producto, $graduacion, $precio, $categoria]);
+    }
+
+    public function guardarCat($nombre, $descripcion){
+        $query=$this->db->prepare('INSERT INTO categoria(id_categoria, nombre, descripcion) VALUES (null,?,?)');
+        $query->execute([$nombre, $descripcion]);
+    }
+
+    public function descripcionProd($id_prod){
+        $query = $this->db->prepare('SELECT producto.producto, producto.precio, producto.graduacion, producto.id_producto, categoria.nombre FROM producto 
+        JOIN categoria ON producto.id_categoria_fk=categoria.id_categoria WHERE `id_producto`= ?');
+        $query-> execute(array($id_prod));
+
+        return $query->fetch(PDO::FETCH_OBJ);
+    }
+
+    public function modificarProd($prod,$grad,$prec,$categ,$id_prod){
+        $query = $this->db->prepare('UPDATE producto SET producto=?,graduacion=?,precio=?,id_categoria_fk=? WHERE id_producto=?');
+        $query-> execute(array($prod,$grad,$prec,$categ,$id_prod));
+
+    }
+
+    public function descripcionCat($id_cat){
+        $query = $this->db->prepare('SELECT id_categoria, nombre, descripcion FROM categoria WHERE id_categoria= ?');
+        $query-> execute(array($id_cat));
+
+        return $query->fetch(PDO::FETCH_OBJ);
+    }
+
+    public function modificarCat($nomb,$descri,$id_cat){
+        $query = $this->db->prepare('UPDATE categoria SET nombre=?,descripcion=? WHERE id_categoria=?');
+        $query-> execute(array($nomb,$descri,$id_cat));
+
+        
+    }
 }

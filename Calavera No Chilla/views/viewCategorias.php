@@ -23,6 +23,10 @@
             $this->smarty->display('templates/viewError.tpl');
 
         }
+        public function mostrarCatModificar($categ){
+            $this->smarty->assign('categoria', $categ);
+            $this->smarty->display('templates/viewModificarCat.tpl');
+        }
         
     }
 
