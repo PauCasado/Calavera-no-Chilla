@@ -1,49 +1,17 @@
 {include file='header.tpl'}
+<div class="productos">
+    <ul>
+    {foreach $productos as $producto}
+        <li><h4>{$producto->producto}</h4>
+            {if isset($username)} 
+                <a href="eliminarProducto/{$producto->id_producto}">Eliminar</a> 
+                <a href="editarProducto/{$producto->id_producto}">Editar</a>
+                <a href="verDetalle/{$producto->id_producto}">Ver Detalle Producto</a>
+            {/if}
+        </li>
 
-<ul>
-{foreach $productos as $producto}
-    <li><h4>{$producto->producto}</h4> ${$producto->precio}{if isset($username)} 
-    <a href="eliminarProducto/{$producto->id_producto}">Eliminar</a> 
-    <a href="editarProducto/{$producto->id_producto}">Editar</a>{/if}</li>
-
-{/foreach}
-</ul>
-{if isset($username)}
-    <div class="container">
-        <form action="agregarProducto" method="POST">
-
-            <div class="row">
-                <div class="col-9">
-                    <div class="form-group">
-                        <label>Nombre del Producto: </label>
-                        <input name="producto" type="text" class="form-control">
-                    </div>
-                </div>
-            </div>
-        
-            <div class="form-group">
-                <label>Graduacion Alcoholica</label>
-                <input name="graduacion" type= "number" class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label>Precio del Producto</label>
-                <input name="precio" type= "number" class="form-control">
-            </div>
-            <div class="form-group">
-                <select name="categoria" >
-                    {foreach $categorias as $categoria}
-                        <option value="{$categoria->id_categoria}">{$categoria->nombre}</option>
-                    {/foreach}
-                </select>
-            </div>
-            
-            <button type="submit" class="btn btn-primary">Guardar Producto</button>
-
-            </form>
-
-        <ul class="list-group mt-4">
-        
-    </div>
-{/if}
+    {/foreach}
+    </ul>
+</div>
+{include file='viewAgregarP.tpl'}
 {include file='footer.tpl'}

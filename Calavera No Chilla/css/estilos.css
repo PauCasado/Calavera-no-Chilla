@@ -6,3 +6,30 @@
 .navbar{
     background-color: black!important;
 }
+#imagen{
+    width: 10% !important;
+    height: 10% !important;
+}
+
+/* para registrarse */
+
+.registro{
+    padding: 30px;
+    border: 15px;
+}
+.categorias{
+    padding-left: 30PX;
+    padding-right: 30PX;
+    border: 15px;
+}
+
+#vue-comentarios{
+    padding-left: 30PX;
+    padding-right: 30PX;
+    border: 15px;
+}
+.productos{
+    padding-left: 30PX;
+    padding-right: 30PX;
+    border: 15px;
+}
